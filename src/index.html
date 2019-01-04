@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <title>Todo.js</title>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="css/app.css">
+    </head>
+
+    <body>
+        <main id="app">
+            <header>
+                <h1 id="NumSumm">1000</h1>
+            </header>
+
+            <ul id="todo-list">
+                <li class="todo-item">
+                    <label class="status">Доход - </label>
+                    <label class="title income">1000</label>
+                    <input class="textfield" type="number">
+                    <button class="edit">Изменить</button>
+                    <button class="delete">Удалить</button>
+                </li>
+            </ul>
+
+            <form id="todo-form">
+                <select id="add-option">
+                    <option value="spending">Рассход</option>
+                    <option value="income">Доход</option>
+                </select>
+                <input id="add-input" type="number">
+                <button id="add-button" type="submit">Добавить</button>
+            </form>
+        </main>
+
+        <script src="js/app.js"></script>
+    </body>
+</html>
