@@ -63,6 +63,9 @@ function addTodoItem(event) {
     
     if (addInput.value === '') return alert('Необходимо ввести значение');
 
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "database.php?addInput=" + addInput.value + "&addOption=" + addOption.value, true);
+    xmlhttp.send();
 
     const todoItem = createTodoItem(addInput.value, addOption.value);
     todoList.appendChild(todoItem);
@@ -93,7 +96,7 @@ function deleteTodoItem() {
     const listItem = this.parentNode;
     todoList.removeChild(listItem);
     calcSumm();
-
+    
 }
 
 const todoForm = document.getElementById('todo-form');
@@ -105,6 +108,23 @@ const todoItems = document.querySelectorAll('.todo-item');
 function main() {
     todoForm.addEventListener('submit', addTodoItem);
     todoItems.forEach(item => bindEvents(item));
+
+    
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            
+            const arrJson = JSON.parse( this.responseText );
+            arrJson.forEach(function(obj) {
+                const todoItem = createTodoItem(obj.amount, obj.type);
+                todoList.appendChild(todoItem);
+            });
+
+            calcSumm();
+        }
+    };
+    xmlhttp.open("GET", "database.php", true);
+    xmlhttp.send();
 }
 
 main();

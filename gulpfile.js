@@ -3,14 +3,16 @@ var gulp       = require('gulp'),
 
 gulp.task('browser-sync', function() {
 	browserSync({
-		server: {
-			baseDir: 'src'
-		},
+		// server: {
+		// 	baseDir: 'src'
+		// },
+		proxy: "forcemoney",
 		notify: false
 	});
 });
 
 gulp.task('watch', ['browser-sync'], function() {
+	gulp.watch('src/**/*.php', browserSync.reload);
 	gulp.watch('src/**/*.html', browserSync.reload);
 	gulp.watch('src/**/*.js', browserSync.reload);
 	gulp.watch('src/**/*.css', browserSync.reload);
